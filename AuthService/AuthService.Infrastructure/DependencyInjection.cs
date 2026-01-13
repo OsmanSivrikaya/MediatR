@@ -1,3 +1,4 @@
+using AuthService.Application.Abstractions;
 using AuthService.Application.Abstractions.Security;
 using AuthService.Application.Abstractions.UserGateway;
 using AuthService.Infrastructure.Security;
@@ -80,8 +81,10 @@ public static class DependencyInjection
             //
             // Bu bilgi Infrastructure detayına aittir
             // ve Application katmanına sızdırılmaz.
-            client.BaseAddress = new Uri(config["UserService:BaseUrl"]!);
+            client.BaseAddress = new Uri(config["Services:UserService:BaseUrl"]!);
         });
+
+        services.AddScoped<IClientCredentialValidator, AppSettingsClientCredentialValidator>();
 
         return services;
     }

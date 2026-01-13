@@ -98,8 +98,13 @@ internal sealed class JwtTokenService : IJwtTokenService
         };
 
         // Kullanıcının rollerini token'a ekler
-        foreach (var r in roles)
-            claims.Add(new Claim(ClaimTypes.Role, r));
+        if (roles.Any())
+        {
+            foreach (var r in roles.Where(x => !string.IsNullOrWhiteSpace(x)))
+            {
+                claims.Add(new Claim(ClaimTypes.Role, r));
+            }
+        }
 
         var jwt = new JwtSecurityToken(
             issuer: _opt.Issuer,
