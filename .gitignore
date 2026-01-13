@@ -1,0 +1,48 @@
+# =========================
+# .NET build outputs
+# =========================
+**/bin/
+**/obj/
+
+# =========================
+# Rider / Visual Studio
+# =========================
+.idea/
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Rider specific
+# =========================
+**/rider.project.model.nuget.info
+**/rider.project.restore.info
+
+# =========================
+# ASP.NET static assets
+# =========================
+**/wwwroot/dist/
+**/wwwroot/lib/
+
+# =========================
+# Certificates / secrets
+# =========================
+**/*.pem
+**/*.key
+**/*.pfx
+**/*.crt
+
+# =========================
+# Appsettings (local secrets)
+# =========================
+**/appsettings.Development.json
+**/appsettings.Local.json
+**/appsettings.Production.json
+
+# =========================
+# OS
+# =========================
+.DS_Store
