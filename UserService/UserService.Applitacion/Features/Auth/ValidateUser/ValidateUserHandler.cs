@@ -1,20 +1,21 @@
 using MediatR;
 using SharedKernel;
 using UserService.Applitacion.Abstractions;
+using UserService.Applitacion.Abstractions.Repository;
 using UserService.Applitacion.Common.Errors;
 
-namespace UserService.Applitacion.Auth.ValidateUser;
+namespace UserService.Applitacion.Features.Auth.ValidateUser;
 
 /// <summary>
 /// Kullanıcı doğrulama iş kuralı
 /// </summary>
-public sealed class ValidateUserCommandHandler
-    : IRequestHandler<ValidateUserCommand, Result<ValidateUserResponse>>
+public sealed class ValidateUserHandler
+    : IRequestHandler<ValidateUserRequest, Result<ValidateUserResponse>>
 {
     private readonly IUserRepository _userRepository;
     private readonly IPasswordHasher _passwordHasher;
 
-    public ValidateUserCommandHandler(
+    public ValidateUserHandler(
         IUserRepository userRepository,
         IPasswordHasher passwordHasher)
     {
@@ -23,7 +24,7 @@ public sealed class ValidateUserCommandHandler
     }
 
     public async Task<Result<ValidateUserResponse>> Handle(
-        ValidateUserCommand request,
+        ValidateUserRequest request,
         CancellationToken ct)
     {
         var user = await _userRepository.GetByEmailAsync(request.Email, ct);

@@ -1,6 +1,6 @@
-using UserService.Domain.Users;
+using UserService.Domain.Entity;
 
-namespace UserService.Applitacion.Abstractions;
+namespace UserService.Applitacion.Abstractions.Repository;
 
 /// <summary>
 /// Kullanıcı verisine erişim kontratı

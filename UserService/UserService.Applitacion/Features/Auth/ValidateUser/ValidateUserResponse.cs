@@ -1,4 +1,4 @@
-namespace UserService.Applitacion.Auth.ValidateUser;
+namespace UserService.Applitacion.Features.Auth.ValidateUser;
 
 /// <summary>
 /// Doğrulanan kullanıcı bilgileri

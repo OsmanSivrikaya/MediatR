@@ -1,6 +1,6 @@
 using UserService.Applitacion.Abstractions;
 
-namespace UserService.Infrastructure.Security;
+namespace UserService.Infrastructure.Concrete;
 
 /// <summary>
 /// BCrypt tabanlı şifre doğrulama

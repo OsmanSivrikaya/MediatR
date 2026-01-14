@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using UserService.Applitacion.Abstractions;
-using UserService.Infrastructure.Security;
-using UserService.Infrastructure.Users;
+using UserService.Applitacion.Abstractions.Repository;
+using UserService.Infrastructure.Concrete;
+using UserService.Infrastructure.Concrete.Repository;
+using UserService.Infrastructure.Persistence;
 
 namespace UserService.Infrastructure;
 
@@ -10,9 +14,14 @@ namespace UserService.Infrastructure;
 /// </summary>
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(
-        this IServiceCollection services)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddDbContext<UserServiceDbContext>(options =>
+        {
+            options.UseNpgsql(configuration.GetConnectionString("UserServiceDb"));
+        });
+
+        services.AddScoped<IUserTaskRepository, UserTaskRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IPasswordHasher, PasswordHasher>();
 

@@ -1,4 +1,6 @@
-namespace UserService.Domain.Users;
+using UserService.Domain.Enums;
+
+namespace UserService.Domain.Entity;
 
 /// <summary>
 /// Sistem kullanıcısını temsil eden domain entity

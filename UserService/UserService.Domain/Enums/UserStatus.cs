@@ -1,4 +1,4 @@
-namespace UserService.Domain.Users;
+namespace UserService.Domain.Enums;
 
 /// <summary>
 /// Kullanıcının sistemdeki durumunu belirtir

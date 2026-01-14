@@ -1,7 +1,7 @@
-using UserService.Applitacion.Abstractions;
-using UserService.Domain.Users;
+using UserService.Applitacion.Abstractions.Repository;
+using UserService.Domain.Entity;
 
-namespace UserService.Infrastructure.Users;
+namespace UserService.Infrastructure.Concrete.Repository;
 
 /// <summary>
 /// Örnek kullanıcı repository (ileride EF Core olacak)

@@ -39,8 +39,7 @@ public static class ResultExtensions
     /// <returns>
     /// Result durumuna göre oluşturulmuş bir <see cref="IActionResult"/>.
     /// </returns>
-    public static IActionResult ToActionResult<T>(
-        this Result<T> result)
+    public static IActionResult ToActionResult<T>(this Result<T> result)
     {
         if (result.IsSuccess)
             return new OkObjectResult(result.Value);
@@ -55,6 +54,24 @@ public static class ResultExtensions
                 => new ForbidResult(),
 
             // Varsayılan
+            _ => new BadRequestObjectResult(result.Error)
+        };
+    }
+    
+    public static IActionResult ToActionResult(
+        this Result result)
+    {
+        if (result.IsSuccess)
+            return new OkResult();
+
+        return result.Error!.Code switch
+        {
+            var code when code == UserErrors.InvalidCredentials.Code
+                => new UnauthorizedObjectResult(result.Error),
+
+            var code when code == UserErrors.UserLocked.Code
+                => new ForbidResult(),
+
             _ => new BadRequestObjectResult(result.Error)
         };
     }
